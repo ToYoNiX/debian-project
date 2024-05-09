@@ -13,12 +13,15 @@
 
 # Table of WindowManagers
 
-- [i3 window manager]()
-
+- [i3 window manager](#i3-wm)
+- [Qtile window manager](#qtile-wm)
 
 
 ---
 
 ### i3 wm
 
+
+---
+### qtile wm
 
