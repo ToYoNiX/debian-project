@@ -22,7 +22,7 @@ cd ../../../
 sudo rm -r LookingGlass/
 
 # Create permissions for the user
-sudo tee -a /etc/tmpfiles.d/10-looking-glass.conf <<EOF
+sudo tee /etc/tmpfiles.d/10-looking-glass.conf <<EOF
 # Type Path               Mode UID   GID Age Argument
 
 f /dev/shm/looking-glass  0660 $USER kvm -
