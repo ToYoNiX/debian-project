@@ -6,8 +6,8 @@
 #### TO run a script:
 1. clone the repo
 2. Go to the directory of the repo using the command `cd`
-3. To run a script type chmod +x scriptname and make sure to be at the directory of the script
-4. Then run sudo ./scriptname
+3. To run a script type `chmod +x scriptname` and make sure to be at the directory of the script
+4. Then run `sudo ./scriptname`
 
 ---
 
