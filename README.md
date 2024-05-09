@@ -43,6 +43,4 @@
 ---
 
 #### **List Of Used Apps**
-- Alacritty => Used as the main terminal
- - From it's benefits, fast in opening, easy to configure
- 
+- Alacritty => Used as the main terminal 
