@@ -11,7 +11,7 @@
 
 ---
 
-# Table of WindowManagers
+## Table of WindowManagers
 
 - [i3 window manager](#i3-wm)
 - [Qtile window manager](#qtile-wm)
@@ -20,6 +20,10 @@
 ---
 
 ### i3 wm
+
+**The Final look**
+![image](https://github.com/ToYoNiX/debian-project/assets/125517573/936b809f-cecd-41e7-9aae-2e973828974f)
+![image](https://github.com/ToYoNiX/debian-project/assets/125517573/b795219e-61c0-48f4-bfe6-22ec485b36a4)
 
 
 ---
