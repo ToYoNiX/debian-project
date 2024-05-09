@@ -4,18 +4,21 @@
 
 
 #### TO run a script:
-1. clone the repo
-2. Go to the directory of the repo using the command `cd`
-3. To run a script type `chmod +x scriptname` and make sure to be at the directory of the script
-4. Then run `sudo ./scriptname`
+```bash
+git clone --depth 1 https://github.com/ToYoNiX/debian-project.git
+cd debian-project/scripts/
+./SCRIPT_NAME.sh 
+
+# Incase the script does not work
+chmod +x SCRIPT_NAME.sh
+./SCRITP_NAME.sh
+```
 
 ---
 
 ## Table of WindowManagers
 
 - [i3 window manager](#i3-wm)
-- [Qtile window manager](#qtile-wm)
-
 
 ---
 
@@ -26,7 +29,7 @@
 ![image](https://github.com/ToYoNiX/debian-project/assets/125517573/b795219e-61c0-48f4-bfe6-22ec485b36a4)
 
 #### Shortcuts
-- win + d -> shows dmenue
+- win + d -> shows dmenu
 - win + return -> opens the terminal
 - win + c -> opens brave-browser
 - win + q -> opens vscode
@@ -35,10 +38,6 @@
 - win + z -> shows you opened apps
 - win + shfit + q -> close the opened app
 - Ctr + shift + q -> close all running windows
-
----
-### qtile wm
-
 
 ---
 
