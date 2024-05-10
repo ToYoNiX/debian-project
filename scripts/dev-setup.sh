@@ -14,7 +14,7 @@ sudo apt update
 sudo apt install code -y
 
 # Install runners, compiles, etc..
-sudo apt install vim gcc g++ gdb jupyter-notebook openjdk-17-jdk openjdk-17-jre arduino -y
+sudo apt install vim gcc g++ gdb python3 python3-sklearn jupyter-notebook openjdk-17-jdk openjdk-17-jre arduino -y
 
 # Add user to dialout group
 sudo usermod -aG dialout $USER
