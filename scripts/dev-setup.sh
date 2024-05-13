@@ -14,7 +14,7 @@ sudo apt update
 sudo apt install code -y
 
 # Install runners, compiles, etc..
-sudo apt install vim gcc g++ gdb python3 python3-sklearn jupyter-notebook openjdk-17-jdk openjdk-17-jre arduino python3-serial ftdi-eeprom libcanberra-gtk-module libcanberra-gtk3-module -y
+sudo apt install vim gcc g++ gdb python3 python3-pygame python3-sklearn jupyter-notebook openjdk-17-jdk openjdk-17-jre arduino python3-serial ftdi-eeprom libcanberra-gtk-module libcanberra-gtk3-module -y
 
 # Add user to dialout group
 sudo usermod -aG dialout $USER
