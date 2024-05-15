@@ -18,3 +18,18 @@ sudo apt install vim gcc g++ gdb python3 python3-pygame python3-sklearn jupyter-
 
 # Add user to dialout group
 sudo usermod -aG dialout $USER
+
+
+# --------------------------
+
+# Download the GitHub Desktop Debian package
+echo "Downloading GitHub Desktop..."
+curl -LO https://github.com/shiftkey/desktop/releases/download/release-2.9.5-linux1/GitHubDesktop-linux-2.9.5-linux1.deb
+
+# Install the GitHub Desktop Debian package
+echo "Installing GitHub Desktop..."
+sudo dpkg -i GitHubDesktop-linux-2.9.5-linux1.deb
+
+# Install dependencies of github Desktop (if any)
+echo "Installing dependencies..."
+sudo apt-get install -f
