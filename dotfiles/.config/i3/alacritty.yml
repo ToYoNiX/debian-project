@@ -1,0 +1,51 @@
+window:
+  opacity: 0.60
+
+# # Font
+# font:
+#   normal:
+#     family: Terminus
+#     style: Regular
+#   italic:
+#     family: Terminus
+#     style: Italic
+#   bold:
+#     family: Terminus
+#     style: Bold
+#   bold_italic:
+#     family: Terminus
+#     style: Bold Italic
+size: 17.0
+
+# Colors
+colors:
+  primary:
+    background: "0x000000"
+    foreground: "0xf8f8f2"
+  cursor:
+    text: "0x8fee96"
+  normal:
+    black: "0x000000"
+    red: "0xff5555"
+    green: "0x50fa7b"
+    yellow: "0xf1fa8c"
+    blue: "0x6272a4"
+    magenta: "0xff79c6"
+    cyan: "0x8be9fd"
+    white: "0xbfbfbf"
+  bright:
+    black: "0x4d4d4d"
+    red: "0xff6e6e"
+    green: "0x69ff94"
+    yellow: "0xf4f99d"
+    blue: "0x94a3ff"
+    magenta: "0xff92df"
+    cyan: "0xa4faff"
+    white: "0xffffff"
+
+# Cursor
+cursor:
+  style: Block
+  vi_mode_style: Block
+# # Background opacity
+# background_opacity: 0.6
