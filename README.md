@@ -28,6 +28,9 @@ chmod +x SCRIPT_NAME.sh
 ![image](https://github.com/ToYoNiX/debian-project/assets/125517573/936b809f-cecd-41e7-9aae-2e973828974f)
 ![image](https://github.com/ToYoNiX/debian-project/assets/125517573/b795219e-61c0-48f4-bfe6-22ec485b36a4)
 
+> You can change these shortcuts as you like
+> you can change it from `.config/i3`
+
 #### Shortcuts
 - win + d -> shows dmenu
 - win + return -> opens the terminal
