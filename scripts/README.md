@@ -3,4 +3,7 @@
 - [i3 Script](https://github.com/ToYoNiX/debian-project/blob/main/scripts/i3.sh)
   - This script is used to install i3 wm, and some of it's helpful tools, like Bubmlebee status, and some fonts
  
-- [Timer Script]()
+- [Timer Script](https://github.com/ToYoNiX/debian-project/blob/main/scripts/timer.sh)
+  - This script is used to add a timer tool, that you can use inside the terminal, it adds some lines to your .bashrc file
+  - You just need to add the path of the video/sound to be played after the timer end, you can edit it inside .bashrc
+    
