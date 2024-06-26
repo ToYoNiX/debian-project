@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 
-sudo apt install ufw
+sudo apt install gufw
 
 sudo ufw limit 22/tcp
 sudo ufw allow 80/tcp
