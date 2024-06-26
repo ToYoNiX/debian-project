@@ -1,3 +1,7 @@
+>Say, ˹O Prophet,˺ “Whether you conceal what is in your hearts or reveal it, it is known to Allah. For He knows whatever is in the heavens and whatever is on the earth. And Allah is Most Capable of everything.”
+Quran 3:29
+
+
 # Welcome To Debian-project
 - We created this project to make it easy for you to use Debian distro, and save effort and time
 - We will always update this repo with scripts, dotfiles, configs
