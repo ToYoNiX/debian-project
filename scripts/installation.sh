@@ -135,8 +135,38 @@ compilerInstallation() {
   done
 }
 
+videoPlayer() {
+  echo "Please select the video player you want to install (or 'None' to skip): "
+  video_option=("None" "VLC" "MPV")
+
+  select video in "${video_option[@]}"; do
+    case $video in
+    "VLC")
+      echo "** Installing VLC media player...**"
+      flatpak install flathub org.videolan.VLC
+      echo "VLC installed successfully."
+      break
+      ;;
+    "MPV")
+      echo "** Installing MPV media player...**"
+      sudo apt install mpv -y
+      echo "MPV installed successfully."
+      break
+      ;;
+    "None")
+      echo "Skipping video player installation."
+      break
+      ;;
+    *)
+      echo "Invalid selection."
+      ;;
+    esac
+  done
+}
+
 #------------------ Calling All Methods at the end of the script -----------------#
 
 essentials
 browserInstallation
 compilerInstallation
+videoPlayer
