@@ -185,6 +185,10 @@ programming() {
   done
 }
 
+tools(){}
+drivers(){}
+gaming(){}
+
 #------------------ Calling All Methods at the end of the script -----------------#
 
 essentials
