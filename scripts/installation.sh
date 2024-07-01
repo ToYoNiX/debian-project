@@ -1,4 +1,4 @@
-#!/bin/bash
+#/!bin/bash
 
 sudo apt install snapd
 sudo snap install core
@@ -67,4 +67,64 @@ elif [ "$web_install" = "brave" ]; then
     echo "Brave browser installed successfully."
 fi
 }
+
+
+
+# Function for compiler installation
+compilerInstallation() {
+  local compiler_name="$1"
+  
+  case $compiler_name in
+    "vscode")
+      # Install vscode
+      echo "** Installing Visual Studio Code..**"
+      sudo apt-get install wget gpg
+      wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+      sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+      echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" |sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
+      rm -f packages.microsoft.gpg
+
+      sudo apt install apt-transport-https
+      sudo apt update
+      sudo apt install code -y
+      ;;
+    "clion")
+      # Install clion (replace with actual commands)
+      echo "** Installing CLion...**"
+      sudo snap install clion --classic
+      ;;
+    "pycharm")
+      # Install pycharm (replace with actual commands)
+      echo "** Installing PyCharm...**"
+      sudo snap install pycharm-community --classic
+      ;;
+    *)
+      echo "Invalid compiler selection: $compiler_name"
+      ;;
+  esac
+}
+
+# Offer compiler selection
+echo "Select a compiler to install (or 'None' to skip): "
+
+compiler_option=("None" "vscode" "clion" "pycharm")
+
+select compiler in "${compiler_option[@]}"; do
+  case $compiler in
+    "None")
+      echo "Skipping compiler installation."
+      break
+      ;;
+    *)
+      compilerInstallation "$compiler"
+      break
+      ;;
+  esac
+done
+
+
+#------------------ Calling All Methods at the end of the script -----------------#
+browserInstallation
+compilerInstallation
+
 
