@@ -1,4 +1,4 @@
-#!/bin/bash
+#/!bin/bash
 
 essentials() {
   # Check if flatpak is installed
@@ -60,8 +60,7 @@ browserInstallation() {
       ;;
     "None")
       echo "Skipping web browser installation."
-      web_install="none"
-      break
+      exit 0
       ;;
     *)
       echo "Invalid selection."
@@ -117,36 +116,27 @@ compilerInstallation() {
     echo "Invalid compiler selection: $compiler_name"
     ;;
   esac
+  # Offer compiler selection
+  echo "Select a compiler to install (or 'None' to skip): "
+
+  compiler_option=("None" "vscode" "clion" "pycharm")
+
+  select compiler in "${compiler_option[@]}"; do
+    case $compiler in
+    "None")
+      echo "Skipping compiler installation."
+      break
+      ;;
+    *)
+      compilerInstallation "$compiler"
+      break
+      ;;
+    esac
+  done
 }
 
 #------------------ Calling All Methods at the end of the script -----------------#
 
-# Call essentials first
 essentials
-
-# Offer compiler selection
-echo "Select a compiler to install (or 'None' to skip): "
-
-compiler_option=("None" "vscode" "clion" "pycharm")
-
-select compiler in "${compiler_option[@]}"; do
-  case $compiler in
-  "None")
-    echo "Skipping compiler installation."
-    compiler_selection="None"
-    break
-    ;;
-  *)
-    compiler_selection="$compiler"
-    break
-    ;;
-  esac
-done
-
-# Call browserInstallation
 browserInstallation
-
-# Call compilerInstallation if a compiler was selected
-if [ "$compiler_selection" != "None" ]; then
-  compilerInstallation "$compiler_selection"
-fi
+compilerInstallation
