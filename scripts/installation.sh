@@ -1,4 +1,4 @@
-#/!bin/bash
+#!/bin/bash
 
 essentials() {
   # Check if flatpak is installed
@@ -21,7 +21,7 @@ essentials() {
 }
 
 browserInstallation() {
-  echo "Please select the web browser you want to install (or 'None' to skip): "
+  echo "Please select the web browser you want to install (or '0' to skip): "
 
   browser_option=("None" "Chrome" "Brave" "Floorp" "Thorium")
 
@@ -86,118 +86,100 @@ browserInstallation() {
 
 # Function for compiler installation
 compilerInstallation() {
-  local compiler_name="$1"
+  echo "Select compilers to install (separated by spaces, or '0' to skip): "
+  echo "Options: 1. vscode 2. clion 3. pycharm"
+  read -r -a compilers
 
-  case $compiler_name in
-  "vscode")
-    # Install vscode
-    echo "** Installing Visual Studio Code..**"
-    sudo apt-get install wget gpg
-    wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >packages.microsoft.gpg
-    sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-    echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list >/dev/null
-    rm -f packages.microsoft.gpg
+  for compiler_index in "${compilers[@]}"; do
+    case $compiler_index in
+    1)
+      # Install vscode
+      echo "** Installing Visual Studio Code..**"
+      sudo apt-get install wget gpg
+      wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >packages.microsoft.gpg
+      sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+      echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list >/dev/null
+      rm -f packages.microsoft.gpg
 
-    sudo apt install apt-transport-https
-    sudo apt update
-    sudo apt install code -y
-    ;;
-  "clion")
-    # Install clion (replace with actual commands)
-    echo "** Installing CLion...**"
-    sudo snap install clion --classic
-    ;;
-  "pycharm")
-    # Install pycharm (replace with actual commands)
-    echo "** Installing PyCharm...**"
-    sudo snap install pycharm-community --classic
-    ;;
-  *)
-    echo "Invalid compiler selection: $compiler_name"
-    ;;
-  esac
-  # Offer compiler selection
-  echo "Select a compiler to install (or 'None' to skip): "
-
-  compiler_option=("None" "vscode" "clion" "pycharm")
-
-  select compiler in "${compiler_option[@]}"; do
-    case $compiler in
-    "None")
+      sudo apt install apt-transport-https
+      sudo apt update
+      sudo apt install code -y
+      ;;
+    2)
+      # Install clion
+      echo "** Installing CLion...**"
+      sudo snap install clion --classic
+      ;;
+    3)
+      # Install pycharm
+      echo "** Installing PyCharm...**"
+      sudo snap install pycharm-community --classic
+      ;;
+    0)
       echo "Skipping compiler installation."
-      break
       ;;
     *)
-      compilerInstallation "$compiler"
-      break
+      echo "Invalid compiler selection: $compiler_index"
       ;;
     esac
   done
 }
 
 videoPlayer() {
-  echo "Please select the video player you want to install (or 'None' to skip): "
-  video_option=("None" "VLC" "MPV")
+  echo "Select video players to install (separated by spaces, or '0' to skip): "
+  echo "Options: 1. VLC 2. MPV"
+  read -r -a videos
 
-  select video in "${video_option[@]}"; do
-    case $video in
-    "VLC")
+  for video_index in "${videos[@]}"; do
+    case $video_index in
+    1)
       echo "** Installing VLC media player...**"
       flatpak install flathub org.videolan.VLC
       echo "VLC installed successfully."
-      break
       ;;
-    "MPV")
+    2)
       echo "** Installing MPV media player...**"
       sudo apt install mpv -y
       echo "MPV installed successfully."
-      break
       ;;
-    "None")
+    0)
       echo "Skipping video player installation."
-      break
       ;;
     *)
-      echo "Invalid selection."
+      echo "Invalid video player selection: $video_index"
       ;;
     esac
   done
 }
 
 programming() {
-  echo "Please select programming languages you want to install (or 'None' to skip): "
-  programming_option=("None" "C++" "Python3 & Jupyter Notebook" "Java")
+  echo "Select programming languages to install (separated by spaces, or '0' to skip): "
+  echo "Options: 1. C++ 2. Python3 & Jupyter Notebook 3. Java"
+  read -r -a languages
 
-  select language in "${programming_option[@]}"; do
-    case $language in
-    "C++")
+  for language_index in "${languages[@]}"; do
+    case $language_index in
+    1)
       echo "** Installing C++ and its essentials...**"
       sudo apt install gcc g++ gdb -y
       echo "C++ installed successfully."
-      break
       ;;
-    "Python3 & Jupyter Notebook")
-      echo "** Installing Python3 and Jupyter Notebook...**"
-      sudo apt install python3 python3-pip -y
-      echo "To install Jupyter Notebook, run: sudo apt install jupyter-notebook"
-      echo "** Note:** Additional scientific libraries like Scikit-learn, Pandas, etc. are not included in this installation."
-      echo "You can install them later using 'pip install <library_name>' command."
-      break
-      ;;
+    2)
+      echo "** Installing Python3 and Jupyter Notebook and it's librarries...**"
+      sudo apt install python3 python3-pygame python3-sklearn python3-pandas python3-numpy python3-seaborn jupyter-notebook -y
+      echo "Installed Successfully"
 
-    "Java")
-      echo "** Installing Java... ***"
+      ;;
+    3)
+      echo "** Installing Java... **"
       sudo apt install openjdk-17-jdk openjdk-17-jre -y
-      echo "*** Installed OpenJDK 17 succesfully ***"
-      break
+      echo "** Installed OpenJDK 17 successfully **"
       ;;
-
-    "None")
+    0)
       echo "Skipping programming language installation."
-      break
       ;;
     *)
-      echo "Invalid selection."
+      echo "Invalid selection: $language_index"
       ;;
     esac
   done
