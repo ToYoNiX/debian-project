@@ -164,9 +164,41 @@ videoPlayer() {
   done
 }
 
+programming() {
+  echo "Please select programming languages you want to install (or 'None' to skip): "
+  programming_option=("None" "C++" "Python3 & Jupyter Notebook" "Java")
+
+  select language in "${programming_option[@]}"; do
+    case $language in
+    "C++")
+      echo "** Installing C++ and its essentials...**"
+      sudo apt install gcc g++ gdb -y
+      echo "C++ installed successfully."
+      break
+      ;;
+    "Python3 & Jupyter Notebook")
+      echo "** Installing Python3 and Jupyter Notebook...**"
+      sudo apt install python3 python3-pip -y
+      echo "To install Jupyter Notebook, run: sudo apt install jupyter-notebook"
+      echo "** Note:** Additional scientific libraries like Scikit-learn, Pandas, etc. are not included in this installation."
+      echo "You can install them later using 'pip install <library_name>' command."
+      break
+      ;;
+    "None")
+      echo "Skipping programming language installation."
+      break
+      ;;
+    *)
+      echo "Invalid selection."
+      ;;
+    esac
+  done
+}
+
 #------------------ Calling All Methods at the end of the script -----------------#
 
 essentials
 browserInstallation
-compilerInstallation
 videoPlayer
+compilerInstallation
+programming
