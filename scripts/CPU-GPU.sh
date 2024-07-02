@@ -57,3 +57,6 @@ install_drivers() {
   # No dedicated GPU, so assume CPU drivers are handled by the kernel
   echo "CPU drivers likely handled by the kernel."
 }
+
+detect_hardware
+install_drivers
