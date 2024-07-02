@@ -1,21 +1,3 @@
-#!/bin/bash
-
-# Function to detect GPU and CPU type
-detect_hardware() {
-  if [[ $(lspci | grep -i nvidia) ]]; then
-    echo "Detected Nvidia GPU"
-    gpu_brand="nvidia"
-  elif [[ $(lspci | grep -i amd) && $(lspci | grep -i vga) ]]; then
-    echo "Detected AMD GPU"
-    gpu_brand="amd"
-  else
-    echo "No dedicated GPU detected, using CPU"
-  fi
-  cpu_info=$(lscpu | grep -m1 "Model name:")
-  cpu_model=${cpu_info#*:}
-  echo "CPU Model: $cpu_model"
-}
-
 # Install drivers based on OS and detected hardware
 install_drivers() {
   # Check for root privileges
@@ -40,15 +22,20 @@ install_drivers() {
 
     # Install nvidia or amd drivers based on brand
     if [[ $gpu_brand == "nvidia" ]]; then
-      # Use official NVIDIA repositories for best results (requires internet access)
-      # You may need to add the appropriate PPA based on your Ubuntu version
-      # See https://www.nvidia.com/en-us/drivers/unix/ for details
-      # Uncomment the following lines if desired
-      # sudo add-apt-repository ppa:ubuntu-drivers/nvidia
-      # sudo apt update
+      # Install the nvidia
+      sudo apt install nvidia-driver
 
-      # Otherwise, use the default repository drivers
-      sudo apt install -y nvidia-driver
+      # Add nvidia drm to grub
+      sudo tee /etc/default/grub.d/nvidia-modeset.cfg <<EOF
+GRUB_CMDLINE_LINUX="\$GRUB_CMDLINE_LINUX nvidia-drm.modeset=1"
+EOF
+      sudo update-grub
+
+      #Install cuda drivers?
+      sudo apt install nvidia-cuda-dev nvidia-cuda-toolkit nvidia-cudnn python3-pip python3-dev python3-venv gcc g++ make -y
+
+      # For gnome
+      sudo ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
     elif [[ $gpu_brand == "amd" ]]; then
       sudo apt install -y xserver-xorg-video-radeon
     fi
