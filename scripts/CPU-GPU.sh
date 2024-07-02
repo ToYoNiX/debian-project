@@ -50,7 +50,7 @@ install_drivers() {
       # Otherwise, use the default repository drivers
       sudo apt install -y nvidia-driver
     elif [[ $gpu_brand == "amd" ]]; then
-      sudo apt install -y xserver-xorg-video-amdhd
+      sudo apt install -y xserver-xorg-video-radeon
     fi
   fi
 
