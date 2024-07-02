@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Install drivers based on OS and detected hardware
 install_drivers() {
   # Check for root privileges
