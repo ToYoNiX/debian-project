@@ -268,3 +268,5 @@ browserInstallation
 videoPlayer
 compilerInstallation
 programming
+desktopEnvInstallation
+windowManagerInstallation
