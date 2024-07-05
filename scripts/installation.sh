@@ -185,9 +185,81 @@ programming() {
   done
 }
 
-tools(){}
-drivers(){}
-gaming(){}
+desktopEnvInstallation() {
+  echo "Select Desktop Environments (DEs) to install (separated by spaces, or '0' to skip):"
+  echo "Options: 1. Gnome 2. KDE"
+
+  read -r -a des
+
+  for de_index in "${des[@]}"; do
+    case $de_index in
+    1)
+      if ! command -v gnome-shell >/dev/null 2>&1; then
+        echo "** Installing Gnome..."
+        sudo apt install gnome-shell gnome-core gnome-terminal -y
+        echo "Gnome installed successfully."
+      else
+        echo "Gnome is already installed."
+      fi
+      ;;
+    2)
+      if ! command -v plasmashell >/dev/null 2>&1; then
+        echo "** Installing KDE..."
+        sudo apt install plasma-desktop kde-applications-default kde-connect -y
+        echo "KDE installed successfully."
+      else
+        echo "KDE is already installed."
+      fi
+      ;;
+    0)
+      echo "Skipping Desktop Environment installation."
+      ;;
+    *)
+      echo "Invalid selection: $de_index"
+      ;;
+    esac
+  done
+}
+
+windowManagerInstallation() {
+  echo "Select Window Managers (WMs) to install (separated by spaces, or '0' to skip):"
+  echo "Options: 1. i3 2. Sway"
+
+  read -r -a wms
+
+  for wm_index in "${wms[@]}"; do
+    case $wm_index in
+    1)
+      if ! command -v i3wm >/dev/null 2>&1; then
+        echo "** Installing i3..."
+        # Install i3
+        sudo apt install i3 -y
+
+        # Install bumblebee-status and pango font
+        sudo apt install bumblebee-status fonts-noto-color-emoji -y
+        echo "i3 with Bumblebee-status and pango font are installed successfully."
+      else
+        echo "i3 is already installed."
+      fi
+      ;;
+    2)
+      if ! command -v sway >/dev/null 2>&1; then
+        echo "** Installing Sway..."
+        sudo apt install sway waybar wofi wdisplays xdg-desktop-portal xdg-desktop-portal-wlr xdg-desktop-portal-gtk -y
+        echo "Sway installed successfully."
+      else
+        echo "Sway is already installed."
+      fi
+      ;;
+    0)
+      echo "Skipping Window Manager installation."
+      ;;
+    *)
+      echo "Invalid selection: $wm_index"
+      ;;
+    esac
+  done
+}
 
 #------------------ Calling All Methods at the end of the script -----------------#
 
