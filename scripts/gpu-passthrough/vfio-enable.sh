@@ -19,3 +19,4 @@ options vfio-pci ids=10de:2507,10de:228e
 EOF
 
 sudo update-initramfs -u
+
