@@ -216,13 +216,7 @@ windowManagerInstallation() {
       ./wm/i3.sh
       ;;
     2)
-      if ! command -v sway >/dev/null 2>&1; then
-        echo "** Installing Sway..."
-        sudo apt install sway waybar wofi wdisplays xdg-desktop-portal xdg-desktop-portal-wlr xdg-desktop-portal-gtk -y
-        echo "Sway installed successfully."
-      else
-        echo "Sway is already installed."
-      fi
+      ./wm/sway.sh
       ;;
     3)
       echo "Skipping Window Manager installation."
@@ -239,11 +233,25 @@ windowManagerInstallation() {
   done
 }
 
+Apps() {
+  browserInstallation
+  videoPlayer
+  grommitInstallation
+}
+
+grommitInstallation() {
+  echo "Do you want to install Grommit-mpx?"
+  echo "Grommit-mpx is an app that allows you to write on the screen. (y/n)"
+  read -r install_grommit
+  ./apps/gromit-mpx.sh
+}
+
+grommitInstallation
+
 #------------------ Calling All Methods at the end of the script -----------------#
 
 essentials
-browserInstallation
-videoPlayer
+Apps
 compilerInstallation
 programming
 desktopEnvInstallation
