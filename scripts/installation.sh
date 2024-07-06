@@ -21,73 +21,60 @@ essentials() {
 }
 
 browserInstallation() {
-  echo "Please select the web browser you want to install (or '0' to skip): "
+  echo "Select the web browsers you want to install (separated by spaces, or '0' to skip): "
 
-  browser_option=("None" "Chrome" "Brave" "Floorp" "Thorium")
+  browser_option=("Chrome" "Brave" "None")
+  chrome_selected=false
+  brave_selected=false
 
   select web in "${browser_option[@]}"; do
     case $web in
     "Chrome")
-      web_install="chrome"
-      break
+      chrome_selected=true
       ;;
     "Brave")
-      web_install="brave"
-      break
-      ;;
-    "Floorp")
-      web_install="floorp"
-      # Install Floorp-browser
-      nala install apt-transport-https curl -y
-      curl -fsSL https://ppa.ablaze.one/KEY.gpg | gpg --dearmor -o /usr/share/keyrings/Floorp.gpg
-      curl -sS --compressed -o /etc/apt/sources.list.d/Floorp.list 'https://ppa.ablaze.one/Floorp.list'
-      nala update
-      nala install floorp -y
-      break
-      ;;
-    "Thorium")
-      web_install="thorium"
-      # Install Thorium-browser
-      builddir="/tmp/thorium_build" # Change this if you prefer a different temporary directory
-      mkdir -p "$builddir"          # Create the temporary directory if it doesn't exist
-      cd "$builddir"
-      nala install apt-transport-https curl -y
-      wget -O ./deb-packages/thorium-browser.deb "$(curl -s https://api.github.com/repos/Alex313031/Thorium/releases/latest | grep browser_download_url | grep amd64.deb | cut -d '"' -f 4)"
-      nala install ./deb-packages/thorium-browser.deb -y
-      cd -               # Exit the temporary directory
-      rm -rf "$builddir" # Optionally remove the temporary directory after installation (comment out if you want to keep it)
-      break
+      brave_selected=true
       ;;
     "None")
       echo "Skipping web browser installation."
-      exit 0
+      return
       ;;
     *)
       echo "Invalid selection."
+      continue
       ;;
     esac
   done
 
-  # Now you have $web_install set to the chosen browser (or empty if "None")
+  # Install selected browsers if not already installed
+  if [ "$chrome_selected" = true ]; then
+    if ! command -v google-chrome >/dev/null 2>&1; then
+      echo "** Installing Google Chrome...**"
+      sudo apt install wget -y
+      wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      sudo apt install ./google-chrome-stable_current_amd64.deb -y
+      rm google-chrome-stable_current_amd64.deb
+    else
+      echo "Google Chrome is already installed."
+    fi
+  fi
 
-  # Placeholder comments for Chrome and Brave installation (replace with actual commands)
-  if [ "$web_install" = "chrome" ]; then
-    echo "** Installing Google Chrome...**"
-    sudo apt install wget -y
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    sudo apt install ./google-chrome-stable_current_amd64.deb -y
-    rm google-chrome-stable_current_amd64.deb
-  elif [ "$web_install" = "brave" ]; then
-    echo "** Installing Brave... **"
-    sudo snap install brave
-    echo "Brave browser installed successfully."
+  if [ "$brave_selected" = true ]; then
+    if ! command -v brave >/dev/null 2>&1; then
+      echo "** Installing Brave... **"
+      sudo snap install brave
+      echo "Brave browser installed successfully."
+    else
+      echo "Brave browser is already installed."
+    fi
   fi
 }
 
 # Function for compiler installation
 compilerInstallation() {
   echo "Select compilers to install (separated by spaces, or '0' to skip): "
-  echo "Options: 1. vscode 2. clion 3. pycharm"
+  echo "Options: 1. vscode 2. clion 3. pycharm 4. None"
+
   read -r -a compilers
 
   for compiler_index in "${compilers[@]}"; do
@@ -115,8 +102,13 @@ compilerInstallation() {
       echo "** Installing PyCharm...**"
       sudo snap install pycharm-community --classic
       ;;
+    4)
+      echo "Skipping compiler installation."
+      return
+      ;;
     0)
       echo "Skipping compiler installation."
+      return
       ;;
     *)
       echo "Invalid compiler selection: $compiler_index"
@@ -127,7 +119,8 @@ compilerInstallation() {
 
 videoPlayer() {
   echo "Select video players to install (separated by spaces, or '0' to skip): "
-  echo "Options: 1. VLC 2. MPV"
+  echo "Options: 1. VLC 2. MPV 3. None"
+
   read -r -a videos
 
   for video_index in "${videos[@]}"; do
@@ -142,8 +135,13 @@ videoPlayer() {
       sudo apt install mpv -y
       echo "MPV installed successfully."
       ;;
+    3)
+      echo "Skipping video player installation."
+      return
+      ;;
     0)
       echo "Skipping video player installation."
+      return
       ;;
     *)
       echo "Invalid video player selection: $video_index"
@@ -154,7 +152,8 @@ videoPlayer() {
 
 programming() {
   echo "Select programming languages to install (separated by spaces, or '0' to skip): "
-  echo "Options: 1. C++ 2. Python3 & Jupyter Notebook 3. Java"
+  echo "Options: 1. C++ 2. Python3 & Jupyter Notebook 3. Java 4. None"
+
   read -r -a languages
 
   for language_index in "${languages[@]}"; do
@@ -165,18 +164,22 @@ programming() {
       echo "C++ installed successfully."
       ;;
     2)
-      echo "** Installing Python3 and Jupyter Notebook and it's librarries...**"
+      echo "** Installing Python3 and Jupyter Notebook and its libraries...**"
       sudo apt install python3 python3-pygame python3-sklearn python3-pandas python3-numpy python3-seaborn jupyter-notebook -y
-      echo "Installed Successfully"
-
+      echo "Python3 and Jupyter Notebook installed successfully."
       ;;
     3)
       echo "** Installing Java... **"
       sudo apt install openjdk-17-jdk openjdk-17-jre -y
       echo "** Installed OpenJDK 17 successfully **"
       ;;
+    4)
+      echo "Skipping programming language installation."
+      return
+      ;;
     0)
       echo "Skipping programming language installation."
+      return
       ;;
     *)
       echo "Invalid selection: $language_index"
@@ -187,7 +190,7 @@ programming() {
 
 desktopEnvInstallation() {
   echo "Select Desktop Environments (DEs) to install (separated by spaces, or '0' to skip):"
-  echo "Options: 1. Gnome 2. KDE"
+  echo "Options: 1. Gnome 2. KDE 3. None"
 
   read -r -a des
 
@@ -211,8 +214,13 @@ desktopEnvInstallation() {
         echo "KDE is already installed."
       fi
       ;;
+    3)
+      echo "Skipping Desktop Environment installation."
+      return
+      ;;
     0)
       echo "Skipping Desktop Environment installation."
+      return
       ;;
     *)
       echo "Invalid selection: $de_index"
@@ -223,24 +231,14 @@ desktopEnvInstallation() {
 
 windowManagerInstallation() {
   echo "Select Window Managers (WMs) to install (separated by spaces, or '0' to skip):"
-  echo "Options: 1. i3 2. Sway"
+  echo "Options: 1. i3 2. Sway 3. None"
 
   read -r -a wms
 
   for wm_index in "${wms[@]}"; do
     case $wm_index in
     1)
-      if ! command -v i3wm >/dev/null 2>&1; then
-        echo "** Installing i3..."
-        # Install i3
-        sudo apt install i3 -y
-
-        # Install bumblebee-status and pango font
-        sudo apt install bumblebee-status fonts-noto-color-emoji -y
-        echo "i3 with Bumblebee-status and pango font are installed successfully."
-      else
-        echo "i3 is already installed."
-      fi
+      ./wm/i3.sh
       ;;
     2)
       if ! command -v sway >/dev/null 2>&1; then
@@ -251,8 +249,13 @@ windowManagerInstallation() {
         echo "Sway is already installed."
       fi
       ;;
+    3)
+      echo "Skipping Window Manager installation."
+      return
+      ;;
     0)
       echo "Skipping Window Manager installation."
+      return
       ;;
     *)
       echo "Invalid selection: $wm_index"
