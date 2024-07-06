@@ -132,16 +132,16 @@ windowManagerInstallation() {
 
 Apps() {
   ./apps/browser.sh
-  ./apps/compilerInstallation.sh
+  ./apps/compilerInstall.sh
   ./apps/videoPlayer.sh
-  ./apps/gromit-mpx.sh
   ./apps/obsidian.sh
+  ./apps/gromit-mpx.sh
 }
 
 #------------------ Calling All Methods at the end of the script -----------------#
 
-essentials
-programming
-desktopEnvInstallation
-windowManagerInstallation
+# essentials
+# programming
+# desktopEnvInstallation
+# windowManagerInstallation
 Apps

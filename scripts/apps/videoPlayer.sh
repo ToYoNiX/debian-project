@@ -1,3 +1,5 @@
+#!/bin/bash
+
 videoPlayer() {
     echo "Select video players to install (separated by spaces, or '0' to skip): "
     echo "Options: 1. VLC 2. MPV 3. None"
@@ -15,13 +17,8 @@ videoPlayer() {
             echo "** Installing MPV media player...**"
             flatpak install flathub io.mpv.Mpv
             echo "MPV installed successfully."
-            echo "MPV installed successfully."
             ;;
-        3)
-            echo "Skipping video player installation."
-            return
-            ;;
-        0)
+        3 | 0)
             echo "Skipping video player installation."
             return
             ;;
@@ -31,3 +28,5 @@ videoPlayer() {
         esac
     done
 }
+
+videoPlayer
