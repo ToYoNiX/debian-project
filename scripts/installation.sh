@@ -48,25 +48,11 @@ browserInstallation() {
 
   # Install selected browsers if not already installed
   if [ "$chrome_selected" = true ]; then
-    if ! command -v google-chrome >/dev/null 2>&1; then
-      echo "** Installing Google Chrome...**"
-      sudo apt install wget -y
-      wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-      sudo apt install ./google-chrome-stable_current_amd64.deb -y
-      rm google-chrome-stable_current_amd64.deb
-    else
-      echo "Google Chrome is already installed."
-    fi
+    ./apps/google-chrome.sh
   fi
 
   if [ "$brave_selected" = true ]; then
-    if ! command -v brave >/dev/null 2>&1; then
-      echo "** Installing Brave... **"
-      sudo snap install brave
-      echo "Brave browser installed successfully."
-    else
-      echo "Brave browser is already installed."
-    fi
+    ./apps/brave-browser.sh
   fi
 }
 
@@ -81,26 +67,15 @@ compilerInstallation() {
     case $compiler_index in
     1)
       # Install vscode
-      echo "** Installing Visual Studio Code..**"
-      sudo apt-get install wget gpg
-      wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >packages.microsoft.gpg
-      sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-      echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list >/dev/null
-      rm -f packages.microsoft.gpg
-
-      sudo apt install apt-transport-https
-      sudo apt update
-      sudo apt install code -y
+      ./apps/vscode.sh
       ;;
     2)
       # Install clion
-      echo "** Installing CLion...**"
-      sudo snap install clion --classic
+      ./apps/clion.sh
       ;;
     3)
       # Install pycharm
-      echo "** Installing PyCharm...**"
-      sudo snap install pycharm-community --classic
+      ./apps/pycharm.sh
       ;;
     4)
       echo "Skipping compiler installation."
