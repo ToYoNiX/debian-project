@@ -20,110 +20,7 @@ essentials() {
   fi
 }
 
-browserInstallation() {
-  echo "Select the web browsers you want to install (separated by spaces, or '0' to skip): "
-
-  browser_option=("Chrome" "Brave" "None")
-  chrome_selected=false
-  brave_selected=false
-
-  select web in "${browser_option[@]}"; do
-    case $web in
-    "Chrome")
-      chrome_selected=true
-      ;;
-    "Brave")
-      brave_selected=true
-      ;;
-    "None")
-      echo "Skipping web browser installation."
-      return
-      ;;
-    *)
-      echo "Invalid selection."
-      continue
-      ;;
-    esac
-  done
-
-  # Install selected browsers if not already installed
-  if [ "$chrome_selected" = true ]; then
-    ./apps/google-chrome.sh
-  fi
-
-  if [ "$brave_selected" = true ]; then
-    ./apps/brave-browser.sh
-  fi
-}
-
 # Function for compiler installation
-compilerInstallation() {
-  echo "Select compilers to install (separated by spaces, or '0' to skip): "
-  echo "Options: 1. vscode 2. clion 3. pycharm 4. None"
-
-  read -r -a compilers
-
-  for compiler_index in "${compilers[@]}"; do
-    case $compiler_index in
-    1)
-      # Install vscode
-      ./apps/vscode.sh
-      ;;
-    2)
-      # Install clion
-      ./apps/clion.sh
-      ;;
-    3)
-      # Install pycharm
-      ./apps/pycharm.sh
-      ;;
-    4)
-      echo "Skipping compiler installation."
-      return
-      ;;
-    0)
-      echo "Skipping compiler installation."
-      return
-      ;;
-    *)
-      echo "Invalid compiler selection: $compiler_index"
-      ;;
-    esac
-  done
-}
-
-videoPlayer() {
-  echo "Select video players to install (separated by spaces, or '0' to skip): "
-  echo "Options: 1. VLC 2. MPV 3. None"
-
-  read -r -a videos
-
-  for video_index in "${videos[@]}"; do
-    case $video_index in
-    1)
-      echo "** Installing VLC media player...**"
-      flatpak install flathub org.videolan.VLC
-      echo "VLC installed successfully."
-      ;;
-    2)
-      echo "** Installing MPV media player...**"
-      sudo apt install mpv -y
-      echo "MPV installed successfully."
-      ;;
-    3)
-      echo "Skipping video player installation."
-      return
-      ;;
-    0)
-      echo "Skipping video player installation."
-      return
-      ;;
-    *)
-      echo "Invalid video player selection: $video_index"
-      ;;
-    esac
-  done
-}
 
 programming() {
   echo "Select programming languages to install (separated by spaces, or '0' to skip): "
@@ -234,18 +131,11 @@ windowManagerInstallation() {
 }
 
 Apps() {
-  browserInstallation
-  compilerInstallation
-  videoPlayer
-  grommitInstallation
-  ./apps/obsidian.sh
-}
-
-grommitInstallation() {
-  echo "Do you want to install Grommit-mpx?"
-  echo "Grommit-mpx is an app that allows you to write on the screen. (y/n)"
-  read -r install_grommit
+  ./apps/browser.sh
+  ./apps/compilerInstallation.sh
+  ./apps/videoPlayer.sh
   ./apps/gromit-mpx.sh
+  ./apps/obsidian.sh
 }
 
 #------------------ Calling All Methods at the end of the script -----------------#

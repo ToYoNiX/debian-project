@@ -1,6 +1,9 @@
 #!/bin/bash
 #
 
+echo "Do you want to install Grommit-mpx?"
+echo "Grommit-mpx is an app that allows you to write on the screen. (y/n)"
+read -r install_grommit
 if [[ $install_grommit =~ ^[Yy]$ ]]; then
     echo "Installing Grommit-mpx..."
 
