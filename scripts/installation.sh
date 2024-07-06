@@ -238,6 +238,7 @@ Apps() {
   compilerInstallation
   videoPlayer
   grommitInstallation
+  ./apps/obsidian.sh
 }
 
 grommitInstallation() {
@@ -250,7 +251,7 @@ grommitInstallation() {
 #------------------ Calling All Methods at the end of the script -----------------#
 
 essentials
-Apps
 programming
 desktopEnvInstallation
 windowManagerInstallation
+Apps
