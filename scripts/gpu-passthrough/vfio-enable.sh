@@ -1,14 +1,6 @@
 #!/bin/bash
 #
 
-# Enable vfio drivers
-sudo tee -a /etc/modules <<EOF
-vfio
-vfio_iommu_type1
-vfio_pci
-vfio_virqfd
-EOF
-
 # Define gpu ids in grub config
 sudo tee /etc/default/grub.d/nvidia-modeset.cfg <<EOF
 GRUB_CMDLINE_LINUX="\$GRUB_CMDLINE_LINUX amd_iommu=on vfio-pci.ids=10de:2507,10de:228e"
@@ -27,4 +19,3 @@ options vfio-pci ids=10de:2507,10de:228e
 EOF
 
 sudo update-initramfs -u
-sudo apt install nvidia-driver -y
