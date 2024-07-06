@@ -235,6 +235,7 @@ windowManagerInstallation() {
 
 Apps() {
   browserInstallation
+  compilerInstallation
   videoPlayer
   grommitInstallation
 }
@@ -246,13 +247,10 @@ grommitInstallation() {
   ./apps/gromit-mpx.sh
 }
 
-grommitInstallation
-
 #------------------ Calling All Methods at the end of the script -----------------#
 
 essentials
 Apps
-compilerInstallation
 programming
 desktopEnvInstallation
 windowManagerInstallation
