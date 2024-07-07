@@ -3,7 +3,11 @@
 
 compilerInstallation() {
     echo "Select compilers to install (separated by spaces, or '0' to skip): "
-    echo "Options: 1. vscode 2. clion 3. pycharm 4. None"
+    echo "Options:
+    1. vscode 
+    2. clion 
+    3. pycharm 
+    4. None"
 
     read -r -a compilers
 
@@ -42,4 +46,5 @@ compilerInstallation() {
     done
 }
 
+echo "-------------------------------------"
 compilerInstallation

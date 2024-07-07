@@ -28,7 +28,6 @@ essentials() {
 # Function for compiler installation
 
 programming() {
-  chmod +x /scripts/programming/*.sh
   echo "Select programming languages to install (separated by spaces, or '0' to skip): "
   echo "Options: 
   1. C++
@@ -84,8 +83,7 @@ gamingInstallation() {
   else
     echo "Skipping gaming essentials installation."
   fi
-  chmod +x /essentials/*.sh
-  ./apps/nvidia-drivers.sh
+  ./essentials/nvidia.sh
   echo "
   -------------------------------------
   
@@ -143,7 +141,7 @@ desktopEnvInstallation() {
 }
 
 windowManagerInstallation() {
-  chmod +x /scripts/wm/*.sh
+
   echo "Select Window Managers (WMs) to install (separated by spaces, or '0' to skip):"
   echo "Options: 
   1. i3 
