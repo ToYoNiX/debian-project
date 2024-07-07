@@ -69,6 +69,7 @@ gamingInstallation() {
   else
     echo "Skipping gaming essentials installation."
   fi
+  chmod +x /essentials/*.sh
   ./apps/nvidia-drivers.sh
 }
 
