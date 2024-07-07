@@ -23,6 +23,7 @@ essentials() {
 # Function for compiler installation
 
 programming() {
+  chmod +x /scripts/programming/*.sh
   echo "Select programming languages to install (separated by spaces, or '0' to skip): "
   echo "Options: 1. C++ 2. Python3 & Jupyter Notebook 3. Java 4. None"
 
@@ -31,19 +32,13 @@ programming() {
   for language_index in "${languages[@]}"; do
     case $language_index in
     1)
-      echo "** Installing C++ and its essentials...**"
-      sudo apt install gcc g++ gdb -y
-      echo "C++ installed successfully."
+      ./programming/cpp.sh
       ;;
     2)
-      echo "** Installing Python3 and Jupyter Notebook and its libraries...**"
-      sudo apt install python3 python3-pygame python3-sklearn python3-pandas python3-numpy python3-seaborn jupyter-notebook -y
-      echo "Python3 and Jupyter Notebook installed successfully."
+      ./programming/data-science.sh
       ;;
     3)
-      echo "** Installing Java... **"
-      sudo apt install openjdk-17-jdk openjdk-17-jre -y
-      echo "** Installed OpenJDK 17 successfully **"
+      ./programming/java.sh
       ;;
     4)
       echo "Skipping programming language installation."
@@ -102,6 +97,7 @@ desktopEnvInstallation() {
 }
 
 windowManagerInstallation() {
+  chmod +x /scripts/wm/*.sh
   echo "Select Window Managers (WMs) to install (separated by spaces, or '0' to skip):"
   echo "Options: 1. i3 2. Sway 3. None"
 

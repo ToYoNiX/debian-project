@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 
+chmod +x /scripts/apps/*.sh
 browserInstallation() {
     echo "Select the web browsers you want to install (separated by spaces, or '0' to skip): "
 
