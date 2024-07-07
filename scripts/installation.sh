@@ -55,6 +55,26 @@ programming() {
   done
 }
 
+gamingInstallation() {
+  echo "Do you want to install gaming essentials? (y/n)"
+  read -r install_gaming
+
+  if [[ $install_gaming == "y" || $install_gaming == "Y" ]]; then
+    echo "Installing gaming essentials..."
+
+    # Install Steam
+    ./apps/steam.sh
+
+    # Install additional gaming packages
+    flatpak install flathub org.winehq.wine -y
+    flatpak install flathub org.lutris.Lutris -y
+
+    echo "Gaming essentials installed successfully."
+  else
+    echo "Skipping gaming essentials installation."
+  fi
+}
+
 desktopEnvInstallation() {
   echo "Select Desktop Environments (DEs) to install (separated by spaces, or '0' to skip):"
   echo "Options: 1. Gnome 2. KDE 3. None"
@@ -140,4 +160,5 @@ essentials
 programming
 desktopEnvInstallation
 windowManagerInstallation
+gamingInstallation
 Apps
