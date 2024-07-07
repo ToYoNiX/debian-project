@@ -18,6 +18,11 @@ essentials() {
   else
     echo "Snapd is already installed."
   fi
+  echo "
+  -------------------------------------
+  
+  -------------------------------------
+  "
 }
 
 # Function for compiler installation
@@ -25,7 +30,11 @@ essentials() {
 programming() {
   chmod +x /scripts/programming/*.sh
   echo "Select programming languages to install (separated by spaces, or '0' to skip): "
-  echo "Options: 1. C++ 2. Python3 & Jupyter Notebook 3. Java 4. None"
+  echo "Options: 
+  1. C++
+  2. Python3 & Jupyter Notebook
+  3. Java
+  4. None"
 
   read -r -a languages
 
@@ -53,6 +62,12 @@ programming() {
       ;;
     esac
   done
+
+  echo "
+  -------------------------------------
+  
+  -------------------------------------
+  "
 }
 
 gamingInstallation() {
@@ -71,11 +86,19 @@ gamingInstallation() {
   fi
   chmod +x /essentials/*.sh
   ./apps/nvidia-drivers.sh
+  echo "
+  -------------------------------------
+  
+  -------------------------------------
+  "
 }
 
 desktopEnvInstallation() {
   echo "Select Desktop Environments (DEs) to install (separated by spaces, or '0' to skip):"
-  echo "Options: 1. Gnome 2. KDE 3. None"
+  echo "Options: 
+  1. Gnome 
+  2. KDE 
+  3. None"
 
   read -r -a des
 
@@ -112,12 +135,20 @@ desktopEnvInstallation() {
       ;;
     esac
   done
+  echo "
+  -------------------------------------
+  
+  -------------------------------------
+  "
 }
 
 windowManagerInstallation() {
   chmod +x /scripts/wm/*.sh
   echo "Select Window Managers (WMs) to install (separated by spaces, or '0' to skip):"
-  echo "Options: 1. i3 2. Sway 3. None"
+  echo "Options: 
+  1. i3 
+  2. Sway 
+  3. None"
 
   read -r -a wms
 
@@ -142,6 +173,11 @@ windowManagerInstallation() {
       ;;
     esac
   done
+  echo "
+  -------------------------------------
+  
+  -------------------------------------
+  "
 }
 
 Apps() {
@@ -160,3 +196,13 @@ desktopEnvInstallation
 windowManagerInstallation
 gamingInstallation
 Apps
+
+echo "Installation complete."
+echo "Is better to restart your system now. Do you want to restart now? (y/n)"
+read -r restart
+if [[ $restart == "y" || $restart == "Y" ]]; then
+  sudo reboot
+else
+  echo "You can restart your system later."
+fi
+#------------------ End of the script -----------------#
