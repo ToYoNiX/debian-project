@@ -201,6 +201,8 @@ read -r restart
 if [[ $restart == "y" || $restart == "Y" ]]; then
   sudo reboot
 else
-  echo "You can restart your system later."
+  echo "
+  
+  You can restart your system later."
 fi
 #------------------ End of the script -----------------#
