@@ -140,8 +140,8 @@ Apps() {
 
 #------------------ Calling All Methods at the end of the script -----------------#
 
-# essentials
-# programming
-# desktopEnvInstallation
-# windowManagerInstallation
+essentials
+programming
+desktopEnvInstallation
+windowManagerInstallation
 Apps
