@@ -62,17 +62,14 @@ gamingInstallation() {
   if [[ $install_gaming == "y" || $install_gaming == "Y" ]]; then
     echo "Installing gaming essentials..."
 
-    # Install Steam
     ./apps/steam.sh
-
-    # Install additional gaming packages
     flatpak install flathub org.winehq.wine -y
     flatpak install flathub org.lutris.Lutris -y
-
     echo "Gaming essentials installed successfully."
   else
     echo "Skipping gaming essentials installation."
   fi
+  ./apps/nvidia-drivers.sh
 }
 
 desktopEnvInstallation() {
