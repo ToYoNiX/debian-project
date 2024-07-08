@@ -24,16 +24,3 @@ EOF
 else
     echo "Skipping Nvidia drivers installation."
 fi
-
-# Link with cuda.sh
-echo "Do you want to link with CUDA? (y/n)"
-read -r link_cuda
-
-if [[ $link_cuda == "y" || $link_cuda == "Y" ]]; then
-    echo "Installing CUDA..."
-    # Link cuda.sh script
-    ./essentials/cuda.sh
-    echo "Installed CUDA successfully"
-else
-    echo "Skipping CUDA linking."
-fi
