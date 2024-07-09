@@ -84,6 +84,7 @@ gamingInstallation() {
     echo "Skipping gaming essentials installation."
   fi
   ./essentials/nvidia.sh
+  ./essentials/cuda.sh
   echo "
   -------------------------------------
   
