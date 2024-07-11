@@ -1,9 +1,33 @@
-#### Here you can find more details about scripts and their uses
+### Installation Script details
 
-- [i3 Script](https://github.com/ToYoNiX/debian-project/blob/main/scripts/wm/i3.sh)
+To run the installation Script
 
-  - This script is used to install i3 wm, and some of it's helpful tools, like Bubmlebee status, and some fonts
+```bash
 
-- [Timer Script](https://github.com/ToYoNiX/debian-project/blob/main/scripts/bash-tools/timer.sh)
-  - This script is used to add a timer tool, that you can use inside the terminal, it adds some lines to your .bashrc file
-  - You just need to add the path of the video/sound to be played after the timer end, you can edit it inside .bashrc
+  git clone https://github.com/ToYoNiX/debian-project
+
+  cd debian-project/scripts
+
+  su -
+
+  chmod +x installation.sh
+
+  ./installation.sh
+
+```
+
+---
+
+### About the installation script:
+
+Insatlling some essential package managers, like flatpack, snapd
+
+Allowing you to choose to install some programming languages or not, like (c++, Java, Python)
+
+Allowing you to choose a text editor or an IDE to install or not, like (vscode, clion, pycharm)
+
+Allowing you to choose some apps that might help you
+
+Having a game Method offering you to install if you want to install Steam, and the GPU needed drivers or not.
+
+> The script will always be updated. We appreciate your feedback and encourage you to report any issues you encounter by creating an issue on our GitHub repository.
