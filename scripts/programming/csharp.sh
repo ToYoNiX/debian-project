@@ -1,3 +1,6 @@
+#!/bin/bash
+#
+
 read -p "Do you want to install C# and dotnet-sdk-8.0 package? (y/n): " answer
 if [[ $answer == "y" || $answer == "Y" ]]; then
     echo "Installing C# and Dotnet .."
