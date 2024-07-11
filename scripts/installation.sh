@@ -33,7 +33,8 @@ programming() {
   1. C++
   2. Python3 & Jupyter Notebook
   3. Java
-  4. None"
+  4. C# and dotnet SDK
+  5. None"
 
   read -r -a languages
 
@@ -49,6 +50,10 @@ programming() {
       ./programming/java.sh
       ;;
     4)
+      ./programming/csharp.sh
+      return
+      ;;
+    5)
       echo "Skipping programming language installation."
       return
       ;;
