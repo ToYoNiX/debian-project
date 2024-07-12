@@ -6,7 +6,7 @@ To run the installation Script
 
   git clone --depth 1 https://github.com/ToYoNiX/debian-project.git
 
-  cd debian-project/scripts
+  cd debian-project/scripts/
 
   su -
 
