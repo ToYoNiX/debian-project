@@ -54,6 +54,10 @@ programming() {
       return
       ;;
     5)
+      ./programming/mysql.sh
+      return
+      ;;
+    6)
       echo "Skipping programming language installation."
       return
       ;;
