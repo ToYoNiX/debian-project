@@ -10,7 +10,7 @@ To run the installation Script
 
   su -
 
-  chmod +x installation.sh
+  chmod +x scripts/*.sh
 
   ./installation.sh
 
