@@ -34,7 +34,8 @@ programming() {
   2. Python3 & Jupyter Notebook
   3. Java
   4. C# and dotnet SDK
-  5. None"
+  5. MySQL
+  0. None"
 
   read -r -a languages
 
@@ -51,15 +52,10 @@ programming() {
       ;;
     4)
       ./programming/csharp.sh
-      return
       ;;
     5)
+      echo "Installing MySQL with MariaDB server .."
       ./programming/mysql.sh
-      return
-      ;;
-    6)
-      echo "Skipping programming language installation."
-      return
       ;;
     0)
       echo "Skipping programming language installation."
@@ -153,7 +149,7 @@ desktopEnvInstallation() {
 windowManagerInstallation() {
 
   echo "Select Window Managers (WMs) to install (separated by spaces, or '0' to skip):"
-  echo "Options: 
+  echo "Options:
   1. i3 
   2. Sway 
   3. None"

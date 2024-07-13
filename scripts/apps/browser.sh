@@ -1,44 +1,27 @@
 #!/bin/bash
-#
 
-browserInstallation() {
-    echo "Select the web browsers you want to install (separated by spaces, or '0' to skip): "
+echo "Select browser(s) to install (separated by spaces, or '0' to skip):"
+echo "Options:
+  1. Chrome
+  2. Brave 
+  3. None"
 
-    browser_option=("Chrome" "Brave" "None")
-    chrome_selected=false
-    brave_selected=false
-
-    select web in "${browser_option[@]}"; do
-        case $web in
-        "Chrome")
-            chrome_selected=true
-            ;;
-        "Brave")
-            brave_selected=true
-            ;;
-        "None")
-            echo "Skipping web browser installation."
-            return
-            ;;
-        *)
-            echo "Invalid selection."
-            continue
-            ;;
-        esac
-    done
-
-    # Install selected browsers if not already installed
-    if [ "$chrome_selected" = true ]; then
-        echo "** Installing Google Chrome...**"
-        flatpak install flathub com.google.Chrome
-        echo "Google Chrome installed successfully."
-    fi
-
-    if [ "$brave_selected" = true ]; then
-        echo "** Installing Brave Browser...**"
-        flatpak install flathub com.brave.Browser
-        echo "Brave Browser installed successfully."
-    fi
-}
-
-browserInstallation
+read -r -a brs
+for brs_index in "${brs[@]}"; do
+  case $brs_index in
+  1)
+    echo "Installing Chrome"
+    flatpak install -y flathub com.google.Chrome
+    ;;
+  2)
+    echo "Installing Brave"
+    flatpak install -y flathub com.brave.Browser
+    ;;
+  0)
+    echo "Skipping browser installation"
+    ;;
+  *)
+    echo "Invalid option: $brs_index"
+    ;;
+  esac
+done
