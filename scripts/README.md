@@ -30,4 +30,5 @@ Allowing you to choose some apps that might help you
 
 Having a game Method offering you to install if you want to install Steam, and the GPU needed drivers or not.
 
+> [!IMPORTANT]
 > The script will always be updated. We appreciate your feedback and encourage you to report any issues you encounter by creating an issue on our GitHub repository.
