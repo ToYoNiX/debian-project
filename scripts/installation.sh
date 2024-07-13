@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Function to install essential tools
 essentials() {
   # Check if flatpak is installed
   if ! command -v flatpak >/dev/null 2>&1; then
@@ -18,15 +19,12 @@ essentials() {
   else
     echo "Snapd is already installed."
   fi
-  echo "
-  -------------------------------------
-  
-  -------------------------------------
-  "
+
+  echo "-------------------------------------"
+  echo
 }
 
-# Function for compiler installation
-
+# Function to install programming languages
 programming() {
   echo "Select programming languages to install (separated by spaces, or '0' to skip): "
   echo "Options: 
@@ -54,7 +52,7 @@ programming() {
       ./programming/csharp.sh
       ;;
     5)
-      echo "Installing MySQL with MariaDB server .."
+      echo "Installing MySQL with MariaDB server..."
       ./programming/mysql.sh
       ;;
     0)
@@ -67,13 +65,11 @@ programming() {
     esac
   done
 
-  echo "
-  -------------------------------------
-  
-  -------------------------------------
-  "
+  echo "-------------------------------------"
+  echo
 }
 
+# Function to install gaming essentials
 gamingInstallation() {
   echo "Do you want to install gaming essentials? (y/n)"
   read -r install_gaming
@@ -82,21 +78,21 @@ gamingInstallation() {
     echo "Installing gaming essentials..."
 
     ./apps/steam.sh
-    flatpak install flathub org.winehq.wine -y
-    flatpak install flathub org.lutris.Lutris -y
+    flatpak install -y flathub org.winehq.wine
+    flatpak install -y flathub org.lutris.Lutris
     echo "Gaming essentials installed successfully."
   else
     echo "Skipping gaming essentials installation."
   fi
+
   ./essentials/nvidia.sh
   ./essentials/cuda.sh
-  echo "
-  -------------------------------------
-  
-  -------------------------------------
-  "
+
+  echo "-------------------------------------"
+  echo
 }
 
+# Function to install desktop environments
 desktopEnvInstallation() {
   echo "Select Desktop Environments (DEs) to install (separated by spaces, or '0' to skip):"
   echo "Options: 
@@ -111,7 +107,7 @@ desktopEnvInstallation() {
     1)
       if ! command -v gnome-shell >/dev/null 2>&1; then
         echo "** Installing Gnome..."
-        sudo apt install gnome-shell gnome-core gnome-terminal -y
+        sudo apt install -y gnome-shell gnome-core gnome-terminal
         echo "Gnome installed successfully."
       else
         echo "Gnome is already installed."
@@ -120,7 +116,7 @@ desktopEnvInstallation() {
     2)
       if ! command -v plasmashell >/dev/null 2>&1; then
         echo "** Installing KDE..."
-        sudo apt install plasma-desktop kde-applications-default kde-connect -y
+        sudo apt install -y plasma-desktop kde-applications-default kde-connect
         echo "KDE installed successfully."
       else
         echo "KDE is already installed."
@@ -139,15 +135,13 @@ desktopEnvInstallation() {
       ;;
     esac
   done
-  echo "
-  -------------------------------------
-  
-  -------------------------------------
-  "
+
+  echo "-------------------------------------"
+  echo
 }
 
+# Function to install window managers
 windowManagerInstallation() {
-
   echo "Select Window Managers (WMs) to install (separated by spaces, or '0' to skip):"
   echo "Options:
   1. i3 
@@ -177,19 +171,21 @@ windowManagerInstallation() {
       ;;
     esac
   done
-  echo "
-  -------------------------------------
-  
-  -------------------------------------
-  "
+
+  echo "-------------------------------------"
+  echo
 }
 
+# Function to install various applications
 Apps() {
   ./apps/browser.sh
   ./apps/compilerInstall.sh
   ./apps/videoPlayer.sh
   ./apps/obsidian.sh
   ./apps/gromit-mpx.sh
+
+  echo "-------------------------------------"
+  echo
 }
 
 #------------------ Calling All Methods at the end of the script -----------------#
@@ -201,14 +197,14 @@ windowManagerInstallation
 gamingInstallation
 Apps
 
+echo "-------------------------------------"
 echo "Installation complete."
-echo "Is better to restart your system now. Do you want to restart now? (y/n)"
+echo "It's recommended to restart your system now. Do you want to restart now? (y/n)"
 read -r restart
 if [[ $restart == "y" || $restart == "Y" ]]; then
   sudo reboot
 else
-  echo "
-  
-  You can restart your system later."
+  echo "You can restart your system later."
 fi
+
 #------------------ End of the script -----------------#
