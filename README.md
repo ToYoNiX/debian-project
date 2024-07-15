@@ -1,9 +1,14 @@
 ### Linux Details
 
 > [!NOTE]
-> Here we will be talking about difference between popular linux distros and package managers
-> Will be talking about some helpful terminal commands
-> Also will try to explain scripting language basics, and some helpful tips
+> Here, we will discuss the differences between popular Linux distributions and their package managers. We'll also cover some useful terminal commands, explain the basics of scripting languages, and provide some helpful tips.
+
+
+
+
+
+
+
 
 ---
 
