@@ -181,6 +181,7 @@ Apps() {
   ./apps/browser.sh
   ./apps/compilerInstall.sh
   ./apps/videoPlayer.sh
+  ./apps/discord.sh
   ./apps/obsidian.sh
   ./apps/gromit-mpx.sh
 
