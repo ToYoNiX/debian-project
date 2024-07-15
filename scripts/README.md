@@ -4,6 +4,8 @@ To run the installation Script
 
 ```bash
 
+  sudo apt install git -y
+
   git clone --depth 1 https://github.com/ToYoNiX/debian-project.git
 
   cd debian-project/scripts/
