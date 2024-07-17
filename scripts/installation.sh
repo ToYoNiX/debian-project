@@ -66,7 +66,6 @@ programming() {
   done
 
   echo "-------------------------------------"
-  echo
 }
 
 # Function to install gaming essentials
