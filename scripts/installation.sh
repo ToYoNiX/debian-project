@@ -183,6 +183,7 @@ Apps() {
   ./apps/videoPlayer.sh
   ./apps/discord.sh
   ./apps/xournalpp.sh
+  ./apps/flameshot.sh
   ./apps/obsidian.sh
   ./apps/gromit-mpx.sh
 
