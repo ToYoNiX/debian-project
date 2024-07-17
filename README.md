@@ -5,5 +5,3 @@
 Include a description of your changes in the pull request description.
 
 ---
-
-### What is a package manager?
