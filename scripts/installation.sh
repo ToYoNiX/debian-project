@@ -184,6 +184,7 @@ Apps() {
   ./apps/discord.sh
   ./apps/xournalpp.sh
   ./apps/flameshot.sh
+  ./apps/github-desktop.sh
   ./apps/obsidian.sh
   ./apps/gromit-mpx.sh
 
