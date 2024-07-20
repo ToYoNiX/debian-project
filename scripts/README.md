@@ -1,26 +1,4 @@
-### Installation Script details
-
-To run the installation Script
-
-```bash
-
-  sudo apt install git -y
-
-  git clone --depth 1 https://github.com/ToYoNiX/debian-project.git
-
-  cd debian-project/scripts/
-
-  su -
-
-  chmod +x scripts/*.sh
-
-  ./installation.sh
-
-```
-
----
-
-### About the installation script:
+### About scripts:
 
 Insatlling some essential package managers, like flatpack, snapd
 
@@ -32,5 +10,3 @@ Allowing you to choose some apps that might help you
 
 Having a game Method offering you to install if you want to install Steam, and the GPU needed drivers or not.
 
-> [!IMPORTANT]
-> The script will always be updated. We appreciate your feedback and encourage you to report any issues you encounter by creating an issue on our GitHub repository.

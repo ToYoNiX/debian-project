@@ -3,10 +3,10 @@
 
 # Install required dependencies
 sudo apt-get install git binutils-dev cmake fonts-dejavu-core libfontconfig-dev \
-gcc g++ pkg-config libegl-dev libgl-dev libgles-dev libspice-protocol-dev \
-nettle-dev libx11-dev libxcursor-dev libxi-dev libxinerama-dev \
-libxpresent-dev libxss-dev libxkbcommon-dev libwayland-dev wayland-protocols \
-libpipewire-0.3-dev libpulse-dev libsamplerate0-dev -y
+    gcc g++ pkg-config libegl-dev libgl-dev libgles-dev libspice-protocol-dev \
+    nettle-dev libx11-dev libxcursor-dev libxi-dev libxinerama-dev \
+    libxpresent-dev libxss-dev libxkbcommon-dev libwayland-dev wayland-protocols \
+    libpipewire-0.3-dev libpulse-dev libsamplerate0-dev -y
 
 # Git and build looking glass
 git clone --recursive https://github.com/gnif/LookingGlass.git
