@@ -5,7 +5,6 @@
 > Include a description of your changes in the pull request description.
 
 ---
-<<<<<<< HEAD
 
 ### What is a package manager?
 
@@ -36,5 +35,6 @@ When it comes to speed, each package manager has its own performance characteris
 - pacman: pacman is renowned for its speed and simplicity. It utilizes a binary package format and employs efficient dependency management algorithms. Additionally, pacman's delta updates feature reduces bandwidth usage by only downloading the changes between package versions.
 
 - Homebrew: Homebrew aims to provide a streamlined experience for macOS users. While it may not be the fastest package manager, it still offers respectable performance. Homebrew's focus on simplicity and user-friendliness ensures that package installations and updates are completed efficiently.
-=======
->>>>>>> main
+
+---
+
