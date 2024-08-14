@@ -13,4 +13,3 @@ flatpak install org.gtk.Gtk3theme.adw-gtk3 org.gtk.Gtk3theme.adw-gtk3-dark
 gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3-dark' && gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
 flatpak install io.github.realmazharhussain.GdmSettings
-flatpak install flathub com.github.GradienceTeam.Gradience
