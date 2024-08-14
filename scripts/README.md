@@ -1,12 +1,11 @@
-### About scripts:
+# Scripts Folder
 
-Insatlling some essential package managers, like flatpack, snapd
+This folder a variety of shell scripts organized by function:
 
-Allowing you to choose to install some programming languages or not, like (c++, Java, Python)
-
-Allowing you to choose a text editor or an IDE to install or not, like (vscode, clion, pycharm)
-
-Allowing you to choose some apps that might help you
-
-Having a game Method offering you to install if you want to install Steam, and the GPU needed drivers or not.
-
+- **Applications**: Installs and configures software like Brave Browser, VS Code, and Obsidian.
+- **Automation**: Automates tasks such as setting keyboard shortcuts and timers.
+- **Customization**: Adjusts GTK themes and icons.
+- **Dev-Tools**: Sets up development environments for languages like C++, C#, and Java.
+- **Miscellaneous**: Covers system maintenance and GPU passthrough, among other things.
+- **Networking**: Manages Samba and firewall settings, just for now.
+- **Sys-Utils**: Optimizes system performance and handles tools like Docker and QEMU.
