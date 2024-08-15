@@ -41,8 +41,13 @@ sudo ufw allow 443/tcp
 sudo ufw allow 1714:1764/udp
 sudo ufw allow 1714:1764/tcp
 
-# Allow Syncthing (file synchronization)
-sudo ufw allow syncthing
+# Check if Syncthing is installed before adding its UFW rule
+if dpkg -l | grep -q syncthing; then
+    echo "Allowing Syncthing through the firewall..."
+    sudo ufw allow syncthing
+else
+    echo "Syncthing is not installed; skipping its UFW rule."
+fi
 
 # Set default policies
 sudo ufw default deny incoming  # Deny all incoming connections by default
