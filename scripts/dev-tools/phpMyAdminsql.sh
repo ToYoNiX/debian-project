@@ -4,7 +4,6 @@
 if ! command -v wget &>/dev/null; then
     echo "wget command not found. Installing wget..."
     sudo apt install wget -y
-    exit 1
 fi
 
 # Check if apache2 command is available, install it if not
