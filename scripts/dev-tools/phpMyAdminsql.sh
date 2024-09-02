@@ -22,6 +22,8 @@ wget -P Downloads https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-lan
 
 wget -P Downloads https://files.phpmyadmin.net/phpmyadmin.keyring
 
+cd
+
 cd Downloads
 
 gpg --import phpmyadmin.keyring
@@ -35,5 +37,7 @@ echo "Unpacking and configuring phpMyAdmin..."
 sudo mkdir /var/www/html/phpMyAdmin
 
 sudo tar xvf phpMyAdmin-latest-all-languages.tar.gz --strip-components=1 -C /var/www/html/phpMyAdmin
+
+rm phpMyAdmin* phpMyAdmin* phpmyadmin*
 
 echo "phpMyAdmin installation completed."
