@@ -3,7 +3,7 @@
 # Check if the correct number of arguments are provided
 if [ "$#" -ne 2 ]; then
   echo "Usage: $0 <project_path> <virtualenv_name>"
-  return 1
+  exit 1
 fi
 
 # Assign arguments to variables
@@ -39,14 +39,14 @@ for ((i=1; i<=attempts; i++)); do
     echo "Some packages failed to install."
     if [ $i -eq $attempts ]; then
       echo "All attempts to install the required packages have failed. Exiting."
-      return 1
+      exit 1
     fi
   fi
 done
 
 # Navigate to the project path
 echo "Navigating to $path..."
-cd "$path" || { echo "Failed to navigate to the specified path."; return 1; }
+cd "$path" || { echo "Failed to navigate to the specified path."; exit 1; }
 
 # Create a virtual environment
 echo "Creating virtual environment named $name..."
@@ -93,9 +93,4 @@ cat > templates/index.html <<EOF
 </html>
 EOF
 
-# Final navigation and environment activation
-echo "Navigating back to $path and activating the virtual environment..."
-cd "$path" || { echo "Failed to navigate to the specified path."; return 1; }
-source "$name/bin/activate"
-
-echo "Flask environment activated. You can now start developing your Flask application."
+echo "Flask project setup complete. To activate the environment, run the activate.sh script."
