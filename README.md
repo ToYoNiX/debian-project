@@ -1,5 +1,4 @@
 ## Contributing
-
 1. **Fork** this repository.
 2. **Create a new branch** from `main`.
 3. **Make your changes**.
@@ -30,3 +29,25 @@ A package manager is a tool that helps you install, update, and remove software 
 - **Homebrew**: Simple and easy to use, offering decent performance.
 - **Flatpak/Snap**: Typically slower than native package managers due to sandboxing but provide broad compatibility and easy updates.
 - **AppImage**: Fast to launch since it's a portable format, though it doesn’t integrate into the system like other package managers.
+
+## Some Details about APT Package Manager
+
+
+The APT package manager is a powerful tool for managing software on Debian and Ubuntu systems. Here are some commonly used commands:
+
+- `sudo apt install packageName`: Installs packages and their dependencies.
+- `sudo apt purge packageName`: Completely removes packages and their configuration files.
+- `sudo apt autoclean packageName`: Removes old package files that are no longer needed.
+- `sudo apt search packageName`: Searches for packages based on keywords.
+
+These commands can be used to efficiently manage software installations and keep your system clean and up to date.
+
+### Tips on Using APT
+APT configurations are located in `/etc/apt/` following is a breakdown for the different directories
+
+`sources.list`: This is the main list of repositories that APT will use for software package management. Each line in this file specifies a different repository. Ref: man 5 sources.list
+
+`sources.list.d/`: This directory allows you to add additional repository lists without modifying the main sources.list file. Each file in this directory should end with .list and contain one or more repository lines, just like the main sources.list file. Ref: man 5 sources.list
+
+`apt.conf` and `apt.conf.d/`: These files and directories contains various configuration files that affect APT's behavior. These files are read in alphanumeric order, and they can override each other. Ref: man 5 apt.conf
+
