@@ -4,7 +4,7 @@
 echo "Installing essential packages..."
 
 # Define the packages to install
-packages="vim curl wget tree uget gparted obs-studio handbrake"
+packages="vim curl wget tree uget gparted obs-studio handbrake pavucontrol"
 
 # Update package list
 sudo apt update
