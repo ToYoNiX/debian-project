@@ -1,16 +1,35 @@
 #!/bin/bash
 
-# Update package lists
-sudo apt update
+mysql() {
+    # Pull the latest MySQL image
+    docker pull mysql
 
-# Install libaio bec its needed
-sudo apt-get install libaio1
+    # Prompt for the container name
+    echo "Please enter the name you want to assign to your container:"
+    read name
 
-sudo apt install mariadb-server mariadb-client -y
+    # Prompt for the MySQL root password
+    echo "Please enter the password to be set for the MySQL root user:"
+    read -s password # The '-s' flag hides the input for security
 
-sudo apt update
+    # Run the MySQL container
+    docker run --name "$name" -e MYSQL_ROOT_PASSWORD="$password" -d mysql:8
+    echo "MySQL container '$name' is now running."
+}
 
-# Secure MySQL installation (prompts for password)
-sudo mysql_secure_installation
-
-echo "MySQL installation complete!"
+# Check if Docker is installed
+if command -v docker &>/dev/null; then
+    mysql
+else
+    echo "Docker is not installed."
+    echo "You need to Install Docker First. Install ? Y | N"
+    read input
+    if [[ $input == "Y" || $input == "y" ]]; then
+        # Call the script to install Docker
+        chmod +x ./sys-utils/docker-install.sh
+        ./sys-utils/docker-install.sh
+        mysql
+    else
+        echo "Docker installation skipped."
+    fi
+fi
