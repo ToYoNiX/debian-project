@@ -1,3 +1,4 @@
+#/bin/bash
 # Check if gnome-shell-extension-manager is already installed
 if dpkg -l | grep -q gnome-shell-extension-manager; then
   echo "Gnome Shell Extension Manager is already installed."
