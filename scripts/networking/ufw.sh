@@ -1,19 +1,30 @@
 #!/bin/bash
-#
 
 echo "Installing and configuring UFW firewall..."
 
-# Update package list
-sudo apt update
+# Check for Debian or Fedora
+if [ -f /etc/debian_version ]; then
+    echo "Detected Debian-based distribution."
+    PACKAGE_MANAGER="apt"
+elif [ -f /etc/redhat-release ]; then
+    echo "Detected Fedora-based distribution."
+    PACKAGE_MANAGER="dnf"
+else
+    echo "Unsupported distribution."
+    exit 1
+fi
 
-# Attempt to install GUFW up to 3 times
-package="gufw"
+# Update package list
+sudo $PACKAGE_MANAGER update
+
+# Attempt to install UFW up to 3 times
+package="ufw"
 for (( attempt=1 ; attempt<=3 ; attempt++ )); do
     echo "Attempt number $attempt: Installing $package..."
-    sudo apt install -y "$package"
+    sudo $PACKAGE_MANAGER install -y "$package"
 
-    # Check if GUFW is installed successfully
-    if dpkg -l | grep -q "$package"; then
+    # Check if UFW is installed successfully
+    if command -v ufw >/dev/null 2>&1; then
         echo "$package installed successfully."
         break
     else
@@ -21,11 +32,14 @@ for (( attempt=1 ; attempt<=3 ; attempt++ )); do
     fi
 done
 
-# Check if GUFW was installed successfully
-if ! dpkg -l | grep -q "$package"; then
+# Check if UFW was installed successfully
+if ! command -v ufw >/dev/null 2>&1; then
     echo "Failed to install $package after multiple attempts."
     exit 1
 fi
+
+# Enabling ufw
+sudo systemctl enable ufw
 
 # Configure UFW firewall rules
 echo "Configuring UFW rules..."
@@ -41,13 +55,10 @@ sudo ufw allow 443/tcp
 sudo ufw allow 1714:1764/udp
 sudo ufw allow 1714:1764/tcp
 
-# Check if Syncthing is installed before adding its UFW rule
-if dpkg -l | grep -q syncthing; then
-    echo "Allowing Syncthing through the firewall..."
-    sudo ufw allow syncthing
-else
-    echo "Syncthing is not installed; skipping its UFW rule."
-fi
+# Enable syncthing with ufw
+sudo ufw allow 22000/tcp
+sudo ufw allow 22000/udp
+
 
 # Set default policies
 sudo ufw default deny incoming  # Deny all incoming connections by default
