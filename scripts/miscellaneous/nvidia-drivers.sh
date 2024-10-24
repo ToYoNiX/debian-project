@@ -3,6 +3,17 @@
 
 echo "Starting Nvidia driver installation..."
 
+# Function to add Nvidia repository to sources.list if not present
+addNvidiaRepository () {
+    local repo_line="deb http://deb.debian.org/debian/ bullseye main contrib non-free"
+    if ! grep -Fxq "$repo_line" /etc/apt/sources.list; then
+        echo "Adding Nvidia repository to /etc/apt/sources.list..."
+        echo "$repo_line" | sudo tee -a /etc/apt/sources.list > /dev/null
+    else
+        echo "Nvidia repository is already present in /etc/apt/sources.list."
+    fi
+}
+
 # Function to install Nvidia drivers
 installNvidiaDrivers () {
     sudo apt update
@@ -32,6 +43,9 @@ configureGnomeForNvidia () {
     echo "Configuring GNOME for Nvidia..."
     sudo ln -sf /dev/null /etc/udev/rules.d/61-gdm.rules || { echo "Failed to configure GNOME for Nvidia."; exit 1; }
 }
+
+# Add Nvidia repository
+addNvidiaRepository
 
 # Attempt to install Nvidia drivers up to 3 times
 for (( attempt=1 ; attempt<=3 ; attempt++ )); do
