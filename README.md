@@ -1,55 +1,72 @@
-## Contributing
+## Archiving This Repository
+
+After careful consideration, I have decided to archive this repository. The reasons for this decision are as follows:
+
+1. **Limited System Modifications**: I’m no longer making as many changes to my system as I was before.
+2. **Shift from Debian**: I have transitioned away from using Debian, making this repository less relevant to my current setup.
+3. **Project Dead-End**: Given the availability of well-supported, community-driven alternatives that achieve the same goals, continuing to contribute to this project no longer seems valuable.
+
+Instead, I plan to find a larger, more impactful project to contribute to.
+
+Thank you for your understanding, and feel free to explore other projects that offer similar or more advanced functionality.
+
+---
+
+## Contributing (Archived)
+
+This repository is now archived. However, if you're interested in the history of contributions, here's the original contributing guide:
+
 1. **Fork** this repository.
 2. **Create a new branch** from `main`.
 3. **Make your changes**.
 4. **Submit a pull request** with a description of what you’ve done.
 
+---
+
 ## What’s a Package Manager?
 
-A package manager is a tool that helps you install, update, and remove software on your system. It handles dependencies and ensures everything is installed correctly. Here's a quick overview:
+A package manager simplifies the process of installing, updating, and removing software. It manages dependencies and ensures that everything is installed correctly. Here's an overview:
 
 ### Distro-Specific Package Managers
 
-- **Apt** (Debian/Ubuntu): Handles `.deb` packages. It's known for vast repositories and reliable dependency management.
-- **Dnf** (Fedora/Red Hat): Manages `.rpm` packages. Designed with a modular approach, offering speed and efficiency.
-- **Pacman** (Arch Linux): Uses `.pkg.tar.xz` packages. Simple, fast, and efficient.
-- **Homebrew** (macOS/Linux): Originally for macOS, but can also be installed on Linux. It's user-friendly and supports version control, making it easy to manage different versions of software.
+- **Apt** (Debian/Ubuntu): Manages `.deb` packages, known for its vast repositories and reliable dependency management.
+- **Dnf** (Fedora/Red Hat): Manages `.rpm` packages, offering a modular approach for better speed and efficiency.
+- **Pacman** (Arch Linux): Uses `.pkg.tar.xz` packages. Known for its simplicity, speed, and efficiency.
+- **Homebrew** (macOS/Linux): Originally for macOS but now available on Linux too. Easy to use, supports version control, and manages multiple software versions.
 
 ### Universal Package Formats
 
-- **Flatpak**: A cross-distro package manager that works on various Linux distributions. It’s known for sandboxing applications, enhancing security.
-- **Snap**: Another universal package manager supported across multiple Linux distributions, with easy installation and automatic updates.
-- **AppImage**: A portable format for Linux applications that can be run directly without installation, offering a simple way to distribute software without dependencies.
+- **Flatpak**: A cross-distro package manager that works across many Linux distributions. Known for its sandboxing approach, which enhances security.
+- **Snap**: A universal package manager supported across multiple Linux distributions. It provides easy installation and automatic updates.
+- **AppImage**: A portable Linux application format that runs without installation, offering simple distribution without dependencies.
 
-### Speed and Performance
+### Performance Overview
 
-- **Apt**: Quick and efficient, with advanced dependency handling and caching.
-- **Dnf**: Faster than its predecessor, `yum`, with a focus on performance.
-- **Pacman**: Highly regarded for its speed and minimalistic approach.
-- **Homebrew**: Simple and easy to use, offering decent performance.
-- **Flatpak/Snap**: Typically slower than native package managers due to sandboxing but provide broad compatibility and easy updates.
-- **AppImage**: Fast to launch since it's a portable format, though it doesn’t integrate into the system like other package managers.
+- **Apt**: Quick and efficient with advanced dependency management and caching.
+- **Dnf**: Faster than its predecessor (`yum`), with a focus on improved performance.
+- **Pacman**: Known for its speed and minimalistic approach.
+- **Homebrew**: User-friendly and simple with decent performance.
+- **Flatpak/Snap**: Generally slower than native managers due to sandboxing but offer broad compatibility and automatic updates.
+- **AppImage**: Fast to launch as a portable format but lacks deep integration with the system like other package managers.
 
-## Some Details about APT Package Manager
+---
 
+## Details on APT Package Manager
 
-The APT package manager is a powerful tool for managing software on Debian and Ubuntu systems. Here are some commonly used commands:
+APT is a powerful tool for managing software on Debian-based systems. Here are some commonly used commands:
 
-- `sudo apt install packageName`: Installs packages and their dependencies.
-- `sudo apt purge packageName`: Completely removes packages and their configuration files.
-- `sudo apt autoremove && sudo apt autoclean`: Removes old package files that are no longer needed.
-- `sudo apt search packageName`: Searches for packages based on keywords.
+- `sudo apt install packageName`: Installs a package and its dependencies.
+- `sudo apt purge packageName`: Removes a package and its configuration files.
+- `sudo apt autoremove && sudo apt autoclean`: Removes unnecessary old package files.
+- `sudo apt search packageName`: Searches for packages based on a keyword.
 
-These commands can be used to efficiently manage software installations and keep your system clean and up to date.
+These commands allow you to efficiently manage software installations and maintain a clean, up-to-date system.
 
-### Tips on Using APT
-APT configurations are located in `/etc/apt/` following is a breakdown for the different directories
+### APT Configuration Files
 
-`sources.list`: This is the main list of repositories that APT will use for software package management. Each line in this file specifies a different repository. Ref: man 5 sources.list
+APT configurations are located in the `/etc/apt/` directory. Below is a breakdown of the key directories:
 
-`sources.list.d/`: This directory allows you to add additional repository lists without modifying the main sources.list file. Each file in this directory should end with .list and contain one or more repository lines, just like the main sources.list file. Ref: man 5 sources.list
-
-`apt.conf` and `apt.conf.d/`: These files and directories contains various configuration files that affect APT's behavior. These files are read in alphanumeric order, and they can override each other. Ref: man 5 apt.conf
-
-`trusted.gpg` and `trusted.gpg.d/`: These files and directories contain the public keys for the repositories. APT uses these keys to verify the integrity of the packages it downloads. Ref: man 8 apt-key
-
+- **sources.list**: The main list of repositories APT uses for package management. Each line specifies a repository URL. (`Ref: man 5 sources.list`)
+- **sources.list.d/**: Contains additional repository files without modifying the main `sources.list`. Files should end with `.list`. (`Ref: man 5 sources.list`)
+- **apt.conf and apt.conf.d/**: Configuration files affecting APT’s behavior, processed in alphanumeric order. (`Ref: man 5 apt.conf`)
+- **trusted.gpg and trusted.gpg.d/**: Stores public keys for repositories, used to verify the integrity of packages. (`Ref: man 8 apt-key`)
